@@ -21,11 +21,11 @@ def find_similar_files(query, file_paths, embeddings):
 
 def main():
     parser = argparse.ArgumentParser(description='Query a vector database to find similar files.')
-    parser.add_argument('db_path', type=str, help='Path to the vector database')
     parser.add_argument('query', type=str, help='Query string to find similar files')
     args = parser.parse_args()
 
-    file_paths, embeddings = load_vector_database(args.db_path)
+    db_path = '.code-vectors.pt'
+    file_paths, embeddings = load_vector_database(db_path)
     similar_files = find_similar_files(args.query, file_paths, embeddings)
     for file in similar_files:
         print(file)
