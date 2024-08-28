@@ -14,7 +14,7 @@ def load_vector_database(db_path):
 def find_similar_files(query, file_paths, embeddings):
     query_embedding = model.encode(query, convert_to_tensor=True)
     scores = util.pytorch_cos_sim(query_embedding, embeddings)[0]
-    top_results = torch.topk(scores, k=5)
+    top_results = torch.topk(scores, k=10)
     similar_files = [file_paths[idx] for idx in top_results[1]]
     return similar_files
 
